@@ -9,7 +9,7 @@ If you encounter any problems, feel free to [create an issue](https://github.com
 ## Roadmap
 This portfolio uses the [Git Flow](https://res.cloudinary.com/practicaldev/image/fetch/s--hFtoPgwf--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/wo935eqxtakkfylqzn7y.png) branching method to keep track of progress.
 
-Once complete, I don't intend to re-visit this project unless there's bugs to fix, or I've forgotten how to build React apps 😂.
+Once complete, I don't intend to re-visit this project unless there's bugs to fix, or I've forgotten how to build React apps. 😂
 
 ## [Contributing](https://GitHub.com/SweetBoy13735/Jammming/blob/master/CONTRIBUTING.md)
 Since it's a [Codecademy](https://www.Codecademy.com) Practice Project, the only contributions I'm accepting are bug reports. Please check out the link above for more info.
