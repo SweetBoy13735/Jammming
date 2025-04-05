@@ -8,7 +8,7 @@ import TrackList from "../components/TrackList";
 //#endregion
 
 //#region File body
-export default function Library() {
+export default function Library({ onAddTrack }) {
 	// Hooks
 	const [query, setQuery] = useState("");
 	const [results, setResults] = useState([]);
@@ -17,12 +17,19 @@ export default function Library() {
 	const handleSearchSubmit = event => {
 		event.preventDefault();
 
-		alert(`Search query: ${query}`);
+		// Data validation and fetch to occur; mocking results for now.
+		setResults([{
+				id: "1", title: "Night Rider", artist: "Abraxis", album: "Night Rider"
+			}, {
+				id: "2", title: "Moonlight Crime", artist: "Nitepunk", album: "Moonlight Crime"
+			}, {
+				id: "3", title: "Ending", artist: "Nitepunk", album: "Ending"
+		}]);
 	}, handleQueryChange = ({ target: { value } }) => { setQuery(value); };
 
 	return (<>
 		<SearchBar query={query} onQueryChange={handleQueryChange} onSubmit={handleSearchSubmit} />
-		<TrackList tracks={results} />
+		<TrackList tracks={results} onTrackSelect={onAddTrack} />
 	</>);
 }
 //#endregion
