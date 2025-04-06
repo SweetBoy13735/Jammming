@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Library from "./containers/Library";
 import Playlist from "./containers/Playlist";
 
-import spotify from "./util/Spotify";
+import Spotify from "./util/Spotify";
 //#endregion
 
 //#region File body
@@ -14,7 +14,7 @@ export default function App() {
 	// Hooks
 	const [selectedTracks, setSelectedTracks] = useState([]);
 
-	useEffect(() => { console.log(spotify.getAccessToken()); }, []);
+	useEffect(() => { console.log(Spotify.getAccessToken()); }, []);
 
 	// Event handlers
 	const handleAddTrack = track => {

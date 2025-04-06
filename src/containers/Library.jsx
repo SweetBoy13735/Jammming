@@ -5,6 +5,8 @@ import { useState } from "react";
 //#region Internal project imports
 import SearchBar from "../components/SearchBar";
 import TrackList from "../components/TrackList";
+
+import Spotify, { baseURL } from "../util/Spotify";
 //#endregion
 
 //#region File body
@@ -17,14 +19,23 @@ export default function Library({ onAddTrack }) {
 	const handleSearchSubmit = event => {
 		event.preventDefault();
 
-		// Data validation and fetch to occur; mocking results for now.
-		setResults([{
-				id: "1", title: "Night Rider", artist: "Abraxis", album: "Night Rider"
-			}, {
-				id: "2", title: "Moonlight Crime", artist: "Nitepunk", album: "Moonlight Crime"
-			}, {
-				id: "3", title: "Ending", artist: "Nitepunk", album: "Ending"
-		}]);
+		fetch(`${baseURL}/search?type=track&q=${query}`, { headers: { Authorization: `Bearer ${Spotify.getAccessToken()}` } })
+		.then(response => response.json())
+		.then(response => {
+			if (!response.tracks) {
+				setResults([]);
+
+				return;
+			}
+
+			setResults(response.tracks.items.map(track => ({
+				id: track.id,
+				title: track.name,
+				artist: track.artists[0].name,
+				album: track.album.name,
+				uri: track.uri
+			})));
+		});
 	}, handleQueryChange = ({ target: { value } }) => { setQuery(value); };
 
 	return (<>

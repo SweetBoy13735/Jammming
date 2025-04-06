@@ -3,7 +3,7 @@ const baseURL = "https://API.Spotify.com/v1", clientID = "7d70c49b118d4d719449c3
 
 let accessToken;
 
-const spotify = {
+const Spotify = {
 	getAccessToken() {
 		if (accessToken) return accessToken;
 
@@ -24,5 +24,7 @@ const spotify = {
 //#endregion
 
 //#region Internal project exports
-export default spotify;
+export default Spotify;
+
+export { baseURL };
 //#endregion
