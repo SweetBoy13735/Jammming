@@ -1,16 +1,20 @@
 //#region External project imports
-import { useState } from "react";
+import { useEffect, useState } from "react";
 //#endregion
 
 //#region Internal project imports
 import Library from "./containers/Library";
 import Playlist from "./containers/Playlist";
+
+import spotify from "./util/Spotify";
 //#endregion
 
 //#region File body
 export default function App() {
 	// Hooks
 	const [selectedTracks, setSelectedTracks] = useState([]);
+
+	useEffect(() => { console.log(spotify.getAccessToken()); }, []);
 
 	// Event handlers
 	const handleAddTrack = track => {
