@@ -5,6 +5,7 @@ import { useState } from "react";
 //#region Internal project imports
 import PlaylistForm from "../components/PlaylistForm";
 import TrackList from "../components/TrackList";
+import Spotify from "../util/Spotify";
 //#endregion
 
 //#region File body
@@ -13,10 +14,10 @@ export default function Playlist({ selectedTracks, onRemoveTrack }) {
 	const [name, setName] = useState("");
 
 	// Event handlers
-	const handlePlaylistSubmit = event => {
+	const handlePlaylistSubmit = async event => {
 		event.preventDefault();
 
-		alert(`Playlist name: ${name}.${"\n"}Selected tracks: ${selectedTracks.map(({title}) => title).join(", ")}`);
+		await Spotify.savePlaylist(name, selectedTracks.map(({ uri }) => uri));
 	}, handleNameChange = ({ target: { value } }) => { setName(value); };
 
 	return (<>
