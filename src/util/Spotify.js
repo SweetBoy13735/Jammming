@@ -19,12 +19,20 @@ const Spotify = {
 
 			return accessToken;
 		} else window.location = `https://Accounts.Spotify.com/authorize?response_type=token&client_id=${clientID}&redirect_uri=http://localhost:3000&scope=playlist-modify-public`;
+	}, async search(query) {
+		try {
+			const { tracks } = await (await fetch(`${baseURL}/search?type=track&q=${query}`, { headers: { Authorization: `Bearer ${this.getAccessToken()}` } })).json();
+
+			return tracks ? tracks.items.map(({ id, name: title, artists: [{ name: artist }], album: { name: album }, uri }) => ({ id, title, artist, album, uri })) : [];
+		} catch (error) {
+			console.error(`An error occurred whilst searching tracks - ${error}`);
+
+			return [];
+		}
 	}
 };
 //#endregion
 
 //#region Internal project exports
 export default Spotify;
-
-export { baseURL };
 //#endregion

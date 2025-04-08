@@ -6,7 +6,7 @@ import { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import TrackList from "../components/TrackList";
 
-import Spotify, { baseURL } from "../util/Spotify";
+import Spotify from "../util/Spotify";
 //#endregion
 
 //#region File body
@@ -16,26 +16,10 @@ export default function Library({ onAddTrack }) {
 	const [results, setResults] = useState([]);
 
 	// Event handlers
-	const handleSearchSubmit = event => {
+	const handleSearchSubmit = async event => {
 		event.preventDefault();
 
-		fetch(`${baseURL}/search?type=track&q=${query}`, { headers: { Authorization: `Bearer ${Spotify.getAccessToken()}` } })
-		.then(response => response.json())
-		.then(response => {
-			if (!response.tracks) {
-				setResults([]);
-
-				return;
-			}
-
-			setResults(response.tracks.items.map(track => ({
-				id: track.id,
-				title: track.name,
-				artist: track.artists[0].name,
-				album: track.album.name,
-				uri: track.uri
-			})));
-		});
+		 setResults(await Spotify.search(query));
 	}, handleQueryChange = ({ target: { value } }) => { setQuery(value); };
 
 	return (<>
