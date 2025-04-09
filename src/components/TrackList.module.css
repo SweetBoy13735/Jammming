@@ -1,0 +1,9 @@
+.trackItem {
+	list-style: none;
+	margin-left: .75rem;
+	padding: 1.25rem 0;
+}
+
+.trackItem+.trackItem {
+	border-top: .125rem solid whitesmoke;
+}

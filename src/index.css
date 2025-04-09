@@ -1,13 +1,20 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://SweetBoy13735.GitHub.io/res/css/style.css");
+
+input {
+	color: whitesmoke;
+	background-color: transparent;
+	border: none;
+	border-bottom: .125rem solid whitesmoke;
+	margin-right: 1rem;
+	font: inherit;
+	outline: none;
+	transition-property: border-bottom-color;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+input::placeholder {
+	color: whitesmoke;
+}
+
+input:focus {
+	border-bottom-color: var(--night-red);
 }

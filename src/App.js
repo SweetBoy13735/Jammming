@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+//#region External project imports
+import { useState } from "react";
+//#endregion
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//#region Internal project imports
+import Library from "./containers/Library";
+import Playlist from "./containers/Playlist";
+//#endregion
+
+//#region File body
+export default function App() {
+	// Hooks
+	const [selectedTracks, setSelectedTracks] = useState([]);
+
+	// Event handlers
+	const handleAddTrack = track => {
+		if (!selectedTracks.includes(track)) setSelectedTracks(tracks => [...tracks, track]);
+	}, handleRemoveTrack = ({ id: trackID }) => { setSelectedTracks(tracks => tracks.filter(({ id }) => trackID !== id)); };
+
+	return (<>
+		<h1>Jammming</h1>
+		<Library onAddTrack={handleAddTrack} />
+		<Playlist selectedTracks={selectedTracks} onRemoveTrack={handleRemoveTrack} />
+	</>);
 }
-
-export default App;
+//#endregion
